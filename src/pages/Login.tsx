@@ -1,4 +1,4 @@
-import { Button } from "./components/ui/button"
+import { Button } from "../components/ui/button"
 import {
   Card,
   CardAction,
@@ -8,17 +8,13 @@ import {
   CardHeader,
   CardTitle,
 } from "./components/ui/card"
-import { Input } from "./components/ui/input"
-import { Switch } from "./components/ui/switch"
-import { useTheme } from "./hooks/themehook"
-import './App.css'
+import { Input } from "../components/ui/input"
 
-function App() {
-  const {theme,toggleTheme} = useTheme()
+
+const Login = () => {
   return (
-    <div className="min-h-screen min-w-screen flex items-center justify-center ">
-      <Switch checked={theme==="dark"} onClick={toggleTheme} className="cursor-pointer"></Switch>
-      <Card className = "  h-[400px] w-[370px] flex items-center justify-center flex-col">
+    <div className="flex items-center justify-center">
+        <Card className = "  h-[400px] w-[370px] flex items-center justify-center flex-col">
   <CardHeader className="flex items-center justify-center  ">
     <CardTitle><h1 className="text-2xl ">Login</h1></CardTitle>
   </CardHeader>
@@ -35,7 +31,6 @@ function App() {
 </Card>      
     </div>
   )
-
 }
 
-export default App
+export default Login
