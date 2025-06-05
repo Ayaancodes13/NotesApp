@@ -4,6 +4,15 @@ import { Button } from "../ui/button"
 import Logo from "../../assets/noteslogonbg.png"
 import {useNavigate} from 'react-router-dom'
 import {motion} from 'motion/react'
+import { Menu } from "lucide-react"
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../../components/ui/sheet"
 type navItem = {
     title:string,
     isActive:boolean,
@@ -23,8 +32,8 @@ const Header = () => {
         {title:"LogOut", isActive:true,slug:"/"}
     ]
   return (
-    <div className="flex items-center justify-around h-[20%] w-[100%]">
-
+<>
+    <div className="hidden md:flex items-center justify-around h-[20%] w-[100%]">
         <div className="h-[70px] flex items-center justify-center">
             <img className="h-[90%]  " src={Logo} alt="Logo" />
         </div>
@@ -35,11 +44,11 @@ const Header = () => {
                         
                         item.isActive?(<MotionButton whileTap={{scale:1.1}} variant="link" className="cursor-pointer" key={item.title} onClick={(()=>{
                             if(item.slug.startsWith("https")){window.open(item.slug,"_blank")}
-                                else{navigate(item.slug)}
+                            else{navigate(item.slug)}
                         })}>{item.title}</MotionButton>):null
-                    
-                )
-            }
+                        
+                    )
+                }
             
         </div>
         
@@ -47,6 +56,45 @@ const Header = () => {
             <Switch checked ={theme === "dark"} onClick={toggleTheme} className="border-black"></Switch>
         </div>
     </div>
+    {/*Mobile Navbar */}
+    <div className="  flex  md:hidden justify-between items-center w-full  h-[20vh]">
+        <div className="h-[70px] flex items-center justify-center  ">
+            <img className="h-[90%]" src={Logo} alt="Logo" />
+        </div>
+        <div className="">
+            <Sheet>
+  <SheetTrigger className="mr-4" asChild>
+    <Button variant="ghost"><Menu className="w-7 h-7" /></Button>
+  </SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle></SheetTitle>
+      <SheetDescription>
+        
+      </SheetDescription>
+    </SheetHeader>
+    <div className="flex flex-col">
+
+    <div className="flex flex-col items-start justify-center gap-4">
+        {navItems.map(
+            (item)=> item.isActive?(<MotionButton whileTap={{scale:1.1}} variant="link" key={item.title} onClick={()=>{
+                if(item.slug.startsWith('https')){window.open(item.slug,"_blank")}
+                else{
+                    navigate(item.slug)
+                }
+            }} > {item.title} </MotionButton>):null
+        )}
+    </div>
+    <div className="flex items-center mt-20 ml-2 justify-start">
+         <Switch checked ={theme === "dark"} onClick={toggleTheme} className="border-black"></Switch>
+
+    </div>
+        </div>
+  </SheetContent>
+</Sheet>
+        </div>
+    </div>
+                </>
   )
 }
 
