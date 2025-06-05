@@ -1,4 +1,5 @@
 import { Button } from "../components/ui/button"
+import { motion } from "motion/react"
 import {
   Card,
   CardContent,
@@ -8,24 +9,24 @@ import {
 } from "../components/ui/card"
 import { Input } from "../components/ui/input"
 import { useNavigate } from "react-router-dom"
-import {motion} from 'motion/react'
-const Login = () => {
-  const navigate = useNavigate()
-  const MotionButton = motion(Button)
+const Signup = () => {
+    const MotionButton = motion(Button)
+    const navigate = useNavigate()
   return (
     <div className="flex items-center justify-center h-full w-full">
         <Card className = "  h-[400px] w-[370px] flex items-center justify-center flex-col">
   <CardHeader className="flex items-center justify-center  ">
-    <CardTitle><h1 className="text-2xl ">Login</h1></CardTitle>
+    <CardTitle><h1 className="text-2xl ">Signup</h1></CardTitle>
   </CardHeader>
   <CardContent className="gap-7 flex flex-col">
+    <Input placeholder="Full Name" type="text"></Input>
     <Input placeholder="Email" className=" w-70 "></Input>
     <Input placeholder="Password" type="password" className=""></Input>
   </CardContent>
   <CardFooter className="flex flex-col gap-3">
-  <MotionButton whileTap={{scale:1.1}}>Login</MotionButton>
+  <MotionButton whileTap={{scale: 1.1}}>Signup</MotionButton>
   <div className="flex gap-1">
-  <p className="text-sm" >Don't have an Account?</p> <p  onClick = {()=>{navigate('/auth/signup')}}className="text-sm underline cursor-pointer">Sign up</p>
+  <p className="text-sm" >Already have an Account?</p> <p  onClick = {()=>{navigate('/auth/')}}className="text-sm underline cursor-pointer">Login</p>
   </div>
   </CardFooter>
 </Card>      
@@ -33,4 +34,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Signup
