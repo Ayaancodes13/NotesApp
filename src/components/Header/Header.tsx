@@ -42,7 +42,7 @@ const Header = () => {
                 navItems.map(
                     (item)=>
                         
-                        item.isActive?(<MotionButton whileTap={{scale:1.1}} variant="link" className="cursor-pointer" key={item.title} onClick={(()=>{
+                        item.isActive?(<MotionButton whileTap={{scale:0.8}} variant="link" className="cursor-pointer" key={item.title} onClick={(()=>{
                             if(item.slug.startsWith("https")){window.open(item.slug,"_blank")}
                             else{navigate(item.slug)}
                         })}>{item.title}</MotionButton>):null
@@ -77,7 +77,7 @@ const Header = () => {
 
     <div className="flex flex-col items-start justify-center gap-4">
         {navItems.map(
-            (item)=> item.isActive?(<MotionButton whileTap={{scale:1.1}} variant="link" key={item.title} onClick={()=>{
+            (item)=> item.isActive?(<MotionButton whileTap={{scale:0.8}} variant="link" key={item.title} onClick={()=>{
                 if(item.slug.startsWith('https')){window.open(item.slug,"_blank")}
                 else{
                     navigate(item.slug)

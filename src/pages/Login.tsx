@@ -23,7 +23,7 @@ const Login = () => {
     <Input placeholder="Password" type="password" className=""></Input>
   </CardContent>
   <CardFooter className="flex flex-col gap-3">
-  <MotionButton whileTap={{scale:1.1}}>Login</MotionButton>
+  <MotionButton whileTap={{scale:0.8}}>Login</MotionButton>
   <div className="flex gap-1">
   <p className="text-sm" >Don't have an Account?</p> <p  onClick = {()=>{navigate('/auth/signup')}}className="text-sm underline cursor-pointer">Sign up</p>
   </div>

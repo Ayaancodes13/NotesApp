@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import notesreducer from '../features/NotesSlice'
+import authreducer from '../features/AuthSlice'
 
 const store = configureStore({
     reducer:{
-        notes:notesreducer
+        notes:notesreducer,
+        auth:authreducer
     }
 })
 
