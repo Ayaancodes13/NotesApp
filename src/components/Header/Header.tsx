@@ -1,10 +1,12 @@
 import { Switch } from "../ui/switch"
 import {useTheme} from '../../hooks/themehook'
 import { Button } from "../ui/button"
+import { useSelector, UseSelector } from "react-redux"
 import Logo from "../../assets/noteslogonbg.png"
 import {useNavigate} from 'react-router-dom'
 import {motion} from 'motion/react'
 import { Menu } from "lucide-react"
+import { RootState } from "../../store/store"
 import {
   Sheet,
   SheetContent,
@@ -20,6 +22,7 @@ type navItem = {
 }
 
 const Header = () => {
+    const authStatus = useSelector((state:RootState) => state.auth.isLoggedIn)
     const MotionButton = motion(Button)
     const navigate = useNavigate()
     const {theme,toggleTheme} = useTheme()
