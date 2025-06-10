@@ -1,12 +1,12 @@
 import { Switch } from "../ui/switch"
 import {useTheme} from '../../hooks/themehook'
 import { Button } from "../ui/button"
-import { useSelector, UseSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import Logo from "../../assets/noteslogonbg.png"
 import {useNavigate} from 'react-router-dom'
 import {motion} from 'motion/react'
 import { Menu } from "lucide-react"
-import { RootState } from "../../store/store"
+import type {  RootState } from "../../store/store"
 import {
   Sheet,
   SheetContent,
@@ -30,9 +30,9 @@ const Header = () => {
         {title:"Home",isActive:true,slug:"/"},
         {title:"About us",isActive:true, slug:"/about-us"},
         {title:"Github",isActive:true ,slug:'https://www.github.com'},
-        {title:"Sign in", isActive:true,slug:"/auth"},
-        {title:"Sign up", isActive:true,slug:"/auth/signup"},
-        {title:"LogOut", isActive:true,slug:"/"}
+        {title:"Sign in", isActive:!authStatus,slug:"/auth"},
+        {title:"Sign up", isActive:!authStatus,slug:"/auth/signup"},
+        {title:"LogOut", isActive:authStatus,slug:"/"}
     ]
   return (
 <>

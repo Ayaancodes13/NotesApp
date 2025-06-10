@@ -8,6 +8,8 @@ type Note = {
   content: string;
   positionX: number;
   positionY: number;
+      $createdAt:number
+
 };
 
 export const createNote = async (noteData: Omit<Note,"$id">)=>{

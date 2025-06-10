@@ -1,0 +1,53 @@
+import { motion } from "motion/react"
+import { Input } from "../ui/input"
+import { Textarea } from "../ui/textarea"
+import { Button } from "../ui/button"
+import { useState } from "react"
+import { addNote } from "../../features/NotesSlice"
+import { createNote } from "../../appwrite/noteService"
+import { useDispatch } from "react-redux"
+const NoteForm = () => {
+    const dispatch = useDispatch()
+    const [inputMsg,setInputmsg] = useState("")
+    const [textMsg,setTextMsg] = useState("")
+    const MotionButton = motion(Button)
+    const submitHandler= async (e:React.FormEvent)=>{
+        e.preventDefault()
+        if(!inputMsg.trim() || !textMsg.trim()){
+            return
+        }
+        try{
+            const createdNote = await createNote({
+                title:inputMsg,
+                content:textMsg,
+                positionX:0,
+                positionY:0,
+                $createdAt:Date.now()
+            })
+            const noteForRedux = {
+            $id: createdNote.$id,
+            title: createdNote.title,
+             content: createdNote.content,
+             positionX: createdNote.positionX,
+            positionY: createdNote.positionY,
+            $createdAt:createdNote.$createdAtcr
+};
+            dispatch(addNote(noteForRedux))
+            setInputmsg("")
+            setTextMsg("")
+        }catch(error){
+            console.log("error performin task",error)
+        }
+    }
+  return (
+    <div className=" fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex  flex-col items-center justify-center ">
+        <form onSubmit={submitHandler}>
+        <Input  value={inputMsg}  onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setInputmsg(e.target.value)}}/>
+        <Textarea value={textMsg}  onChange={(e:React.ChangeEvent<HTMLTextAreaElement>)=>{setTextMsg(e.target.value)}}/>
+        <MotionButton type="submit" variant="outline" whileTap={{scale:0.9}} />
+        </form>
+    </div>
+  )
+}
+
+export default NoteForm
