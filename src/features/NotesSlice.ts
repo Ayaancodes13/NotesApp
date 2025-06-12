@@ -31,7 +31,7 @@ const notesSlice = createSlice({
                 state.notes[index] = action.payload
         },
         deleteNote:(state,action:PayloadAction<string>)=>{
-            state.notes.filter(
+            state.notes = state.notes.filter(
                 (note)=>
                     note.$id !== action.payload
             )
