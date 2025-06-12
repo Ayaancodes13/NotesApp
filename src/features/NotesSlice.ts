@@ -4,7 +4,7 @@ type Note = {
     $id:string,
     title:string,
     content:string,
-    $createdAt:string
+    $createdAt:number
     positionX:number,
     positionY:number,
 }

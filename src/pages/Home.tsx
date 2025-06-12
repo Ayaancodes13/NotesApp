@@ -1,24 +1,23 @@
 import {motion} from 'motion/react'
-import { Textarea } from "../components/ui/textarea"
-import { useRef } from 'react'
-import { Input } from '../components/ui/input'
+
+import { useRef, useState } from 'react'
+import { Button } from '../components/ui/button'
+import NoteForm from '../components/Note/NoteForm'
 const Home = () => {
+  const MotionButton = motion(Button)
     const constraints = useRef(null)
+    const [isOpen,setIsOpen] = useState<boolean>(false)
   return (
 
-    <div ref={constraints} className="h-[80vh] w-full">
-        <motion.div  whileDrag={{scale:0.9}} drag dragConstraints={constraints} dragElastic={0} dragMomentum={false} className=' h-50 w-80 shadow-amber-200 shadow-md bg-amber-200 dark:bg-transparent '>
-            <Input placeholder='Title ' className='outline-none rounded-none border-none'></Input>
-            <Textarea className='outline-none rounded-none border-none'placeholder='Enter Text' />
-        </motion.div>
-        <motion.div drag dragConstraints={constraints} dragElastic={0} dragMomentum={false} className=' h-50 w-80 shadow-amber-200 shadow-md bg-amber-200 dark:bg-transparent '>
-            <Input placeholder='Title ' className='outline-none rounded-none border-none'></Input>
-            <Textarea className='outline-none rounded-none border-none'placeholder='Enter Text' />
-        </motion.div>
-        <motion.div drag dragConstraints={constraints} dragElastic={0} dragMomentum={false} className=' h-50 w-80 shadow-amber-200 shadow-md bg-amber-200 dark:bg-transparent '>
-            <Input placeholder='Title ' className='outline-none rounded-none border-none'></Input>
-            <Textarea className='outline-none rounded-none border-none'placeholder='Enter Text' />
-        </motion.div>
+    <div  className="h-[80vh] w-full">
+        
+        <div ref={constraints} className='min-h-[60vh]'></div>
+        {
+          !isOpen?(
+          <MotionButton whileTap={{scale:0.9}} onClick={()=>{setIsOpen(true)}}>Create Note</MotionButton>):
+          null
+        }
+        <NoteForm isOpen={isOpen} setIsOpen={setIsOpen}/>
         
     </div>
   )
