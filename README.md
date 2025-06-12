@@ -1,1 +1,1 @@
-Draggable Notes App in React Typescript
+FullStack Draggable Notes App being made in React-TypeScript with Appwrite cloud Backend
